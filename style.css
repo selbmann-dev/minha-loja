@@ -1,0 +1,9 @@
+/* Estilo Global e Rolagem Suave */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Suporte a classes auxiliares ou estilos personalizados futuros */
+.time-card {
+    will-change: transform;
+}

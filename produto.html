@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manto Oficial | Manto2026</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: '#FFD700',
+                        brandDark: '#0A0F1D',
+                        brandCard: '#161F33',
+                        brandGreen: '#00C853'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-brandDark text-white font-sans antialiased">
+
+    <!-- Navegação / Voltar para o Início -->
+    <nav class="bg-brandCard/90 backdrop-blur-md fixed w-full z-50 border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2 text-gold font-bold hover:underline">
+                <span>⬅️</span> Voltar para o Início
+            </a>
+            <span id="nav-titulo-time" class="font-extrabold text-xl tracking-wider text-white">MANTO <span class="text-gold">2026</span></span>
+        </div>
+    </nav>
+
+    <!-- SEÇÃO DO PRODUTO DINÂMICO & CARRINHO MULTI-ITEM -->
+    <main class="pt-28 pb-16 sm:pt-36 sm:pb-24">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+                
+                <!-- Coluna da Galeria e Pré-visualização -->
+                <div class="bg-brandCard border border-white/10 rounded-2xl p-6 flex flex-col items-center justify-center relative shadow-2xl">
+                    <span class="absolute top-4 left-4 bg-brandGreen/20 text-brandGreen text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider border border-brandGreen/30 z-10">Coleção Oficial 2026</span>
+                    
+                    <!-- Imagem Principal em Destaque -->
+                    <div class="w-full h-72 sm:h-96 bg-slate-900/80 rounded-xl flex items-center justify-center p-4 my-6">
+                        <!-- AQUI: id="img-produto" para o JS o encontrar -->
+                        <img id="img-produto" src="" alt="Manto Oficial" class="max-h-full max-w-full object-contain transition-all duration-300">
+                    </div>
+
+                    <!-- Pré-visualização rápida das 3 Opções -->
+                    <div class="w-full">
+                        <p class="text-xs text-slate-400 text-center mb-3 font-semibold uppercase tracking-wider">Edições Disponíveis (Estoque: 10 un. cada):</p>
+                        <div class="grid grid-cols-3 gap-3">
+                            <button type="button" onclick="trocarVisualizacao(1)" class="manto-thumb flex flex-col items-center p-2 rounded-xl border-2 border-gold bg-slate-900 transition-all">
+                                <span class="text-[11px] font-bold text-gold">Titular</span>
+                            </button>
+                            <button type="button" onclick="trocarVisualizacao(2)" class="manto-thumb flex flex-col items-center p-2 rounded-xl border-2 border-white/20 bg-slate-900 transition-all">
+                                <span class="text-[11px] font-bold text-white">Reserva</span>
+                            </button>
+                            <button type="button" onclick="trocarVisualizacao(3)" class="manto-thumb flex flex-col items-center p-2 rounded-xl border-2 border-white/20 bg-slate-900 transition-all">
+                                <span class="text-[11px] font-bold text-white">Especial</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Coluna de Seleção de Quantidades Mistas, Tamanho e Checkout -->
+                <div class="flex flex-col">
+                    <span class="text-gold font-bold text-sm uppercase tracking-widest mb-1">Monte o seu Kit de Campeão</span>
+                    <h1 id="nome-produto" class="text-2xl sm:text-4xl font-black mb-4">Carregando Manto...</h1>
+                    
+                    <p class="text-slate-300 text-sm leading-relaxed mb-6">
+                        Escolha as quantidades desejadas para cada edição (Até 10 unidades por modelo). O valor é calculado automaticamente.
+                    </p>
+
+                    <!-- SELETOR DE QUANTIDADES POR MODELO (MÁX 10 CADA) -->
+                    <div class="bg-slate-900/90 border border-white/10 p-4 rounded-2xl mb-6 space-y-4">
+                        <h3 class="text-xs font-bold text-gold uppercase tracking-wider">🛒 Seleção de Quantidades (Mix de Mantos):</h3>
+                        
+                        <!-- Item 1: Titular -->
+                        <div class="flex items-center justify-between bg-brandCard p-3 rounded-xl border border-white/5">
+                            <div>
+                                <span class="block font-bold text-sm text-white">Manto 1 - Titular</span>
+                                <span class="text-[10px] text-slate-400">R$ 199,90 un. (Max: 10)</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <button type="button" onclick="ajustarQtd('titular', -1)" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 font-bold text-gold border border-white/10">-</button>
+                                <span id="qtd-titular" class="font-black text-lg w-6 text-center">0</span>
+                                <button type="button" onclick="ajustarQtd('titular', 1)" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 font-bold text-gold border border-white/10">+</button>
+                            </div>
+                        </div>
+
+                        <!-- Item 2: Reserva -->
+                        <div class="flex items-center justify-between bg-brandCard p-3 rounded-xl border border-white/5">
+                            <div>
+                                <span class="block font-bold text-sm text-white">Manto 2 - Reserva</span>
+                                <span class="text-[10px] text-slate-400">R$ 199,90 un. (Max: 10)</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <button type="button" onclick="ajustarQtd('reserva', -1)" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 font-bold text-gold border border-white/10">-</button>
+                                <span id="qtd-reserva" class="font-black text-lg w-6 text-center">0</span>
+                                <button type="button" onclick="ajustarQtd('reserva', 1)" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 font-bold text-gold border border-white/10">+</button>
+                            </div>
+                        </div>
+
+                        <!-- Item 3: Especial -->
+                        <div class="flex items-center justify-between bg-brandCard p-3 rounded-xl border border-white/5">
+                            <div>
+                                <span class="block font-bold text-sm text-white">Manto 3 - Especial</span>
+                                <span class="text-[10px] text-slate-400">R$ 199,90 un. (Max: 10)</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <button type="button" onclick="ajustarQtd('especial', -1)" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 font-bold text-gold border border-white/10">-</button>
+                                <span id="qtd-especial" class="font-black text-lg w-6 text-center">0</span>
+                                <button type="button" onclick="ajustarQtd('especial', 1)" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 font-bold text-gold border border-white/10">+</button>
+                            </div>
+                        </div>
+
+                        <!-- Resumo do Preço Dinâmico -->
+                        <div class="pt-3 border-t border-white/10 flex items-center justify-between">
+                            <span class="text-xs font-semibold text-slate-300">Total de Peças: <strong id="total-pecas" class="text-white">0</strong></span>
+                            <div class="text-right">
+                                <span class="text-xs text-slate-400 block">Valor Total:</span>
+                                <span id="valor-total" class="text-2xl font-black text-brandGreen">R$ 0,00</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Seleção de Tamanho -->
+                    <div class="mb-6">
+                        <label class="block text-sm font-bold text-slate-300 mb-2">Escolha o Tamanho Geral do Kit:</label>
+                        <div class="flex flex-wrap gap-3">
+                            <button type="button" onclick="selecionarTamanho('P', this)" class="tamanho-btn w-12 h-12 rounded-xl border border-white/20 bg-brandCard font-bold hover:border-gold hover:text-gold transition-all">P</button>
+                            <button type="button" onclick="selecionarTamanho('M', this)" class="tamanho-btn w-12 h-12 rounded-xl border border-white/20 bg-brandCard font-bold hover:border-gold hover:text-gold transition-all">M</button>
+                            <button type="button" onclick="selecionarTamanho('G', this)" class="tamanho-btn w-12 h-12 rounded-xl border border-white/20 bg-brandCard font-bold hover:border-gold hover:text-gold transition-all">G</button>
+                            <button type="button" onclick="selecionarTamanho('GG', this)" class="tamanho-btn w-12 h-12 rounded-xl border border-white/20 bg-brandCard font-bold hover:border-gold hover:text-gold transition-all">GG</button>
+                            <button type="button" onclick="selecionarTamanho('XGG', this)" class="tamanho-btn w-14 h-12 rounded-xl border border-white/20 bg-brandCard font-bold hover:border-gold hover:text-gold transition-all">XGG</button>
+                        </div>
+                    </div>
+
+                    <!-- Formulário Integrado de Conclusão da Compra -->
+                    <div class="bg-brandCard/60 border border-white/10 p-5 rounded-2xl backdrop-blur-sm">
+                        <h3 class="font-bold text-gold mb-3 text-sm uppercase tracking-wider">📦 Dados para Entrega e Pagamento</h3>
+                        
+                        <form id="form-checkout" onsubmit="concluirPedido(event)" class="space-y-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-1">Nome Completo</label>
+                                <input type="text" id="cliente-nome" required placeholder="Ex: Carlos Silva" class="w-full bg-slate-900 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-gold">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-1">Telemóvel / WhatsApp</label>
+                                <input type="text" id="cliente-fone" required placeholder="Ex: (11) 99999-9999" class="w-full bg-slate-900 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-gold">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-1">Forma de Pagamento</label>
+                                <select id="forma-pagamento" onchange="verificarFormaPagamento()" class="w-full bg-slate-900 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-gold">
+                                    <option value="Pix">⚡ PIX (Aprovação imediata com 5% de desconto)</option>
+                                    <option value="Cartão de Crédito">💳 Cartão de Crédito</option>
+                                </select>
+                            </div>
+
+                            <!-- CAMPOS DINÂMICOS DO CARTÃO DE CRÉDITO (Iniciais Ocultos) -->
+                            <div id="container-cartao" class="hidden bg-slate-900/90 border border-gold/30 p-4 rounded-xl space-y-3 transition-all duration-300">
+                                <span class="text-xs font-bold text-gold uppercase tracking-wider block mb-1">🔒 Informações do Cartão de Crédito</span>
+                                
+                                <div>
+                                    <label class="block text-[11px] font-semibold text-slate-300 mb-1">Número do Cartão</label>
+                                    <input type="text" id="cc-numero" placeholder="0000 0000 0000 0000" maxlength="19" class="w-full bg-brandCard border border-white/10 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-gold font-mono">
+                                </div>
+
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label class="block text-[11px] font-semibold text-slate-300 mb-1">Validade (MM/AA)</label>
+                                        <input type="text" id="cc-validade" placeholder="MM/AA" maxlength="5" class="w-full bg-brandCard border border-white/10 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-gold font-mono">
+                                    </div>
+                                    <div>
+                                        <label class="block text-[11px] font-semibold text-slate-300 mb-1">CVV / Código</label>
+                                        <input type="password" id="cc-cvv" placeholder="123" maxlength="4" class="w-full bg-brandCard border border-white/10 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-gold font-mono">
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label class="block text-[11px] font-semibold text-slate-300 mb-1">Parcelamento</label>
+                                    <select id="cc-parcelas" class="w-full bg-brandCard border border-white/10 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-gold">
+                                        <option value="1x sem juros">À vista (1x sem juros)</option>
+                                        <option value="2x sem juros">2x sem juros</option>
+                                        <option value="3x sem juros">3x sem juros</option>
+                                        <option value="6x sem juros">6x sem juros</option>
+                                        <option value="12x com juros">12x com juros</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="w-full bg-gradient-to-r from-gold to-amber-500 hover:from-yellow-400 hover:to-amber-400 text-slate-950 font-black text-base py-3.5 rounded-xl transition-all shadow-xl shadow-gold/20 transform hover:-translate-y-0.5 mt-2">
+                                CONFIRMAR E FINALIZAR PEDIDO
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="bg-brandCard border-t border-white/10 py-8 text-center text-slate-400 text-sm">
+        <p>&copy; 2026 Manto 2026. Todos os direitos reservados.</p>
+    </footer>
+
+<script>
+    const baseDadosTimes = {
+        "flamengo": { nome: "Flamengo", prefixo: "flamengo" },
+        "palmeiras": { nome: "Palmeiras", prefixo: "palmeiras" },
+        "sao-paulo": { nome: "São Paulo", prefixo: "sao-paulo" },
+        "corinthians": { nome: "Corinthians", prefixo: "corinthians" },
+        "fluminense": { nome: "Fluminense", prefixo: "fluminense" },
+        "botafogo": { nome: "Botafogo", prefixo: "botafogo" },
+        "vasco": { nome: "Vasco", prefixo: "vasco" },
+        "gremio": { nome: "Grêmio", prefixo: "gremio" },
+        "internacional": { nome: "Internacional", prefixo: "internacional" },
+        "atletico-mg": { nome: "Atlético-MG", prefixo: "atletico-mg" },
+        "cruzeiro": { nome: "Cruzeiro", prefixo: "cruzeiro" },
+        "santos": { nome: "Santos", prefixo: "santos" },
+        "athletico-pr": { nome: "Athletico-PR", prefixo: "athletico-pr" },
+        "bahia": { nome: "Bahia", prefixo: "bahia" },
+        "fortaleza": { nome: "Fortaleza", prefixo: "fortaleza" },
+        "bragantino": { nome: "Bragantino", prefixo: "bragantino" },
+        "ceara": { nome: "Ceará", prefixo: "ceara" },
+        "sport": { nome: "Sport", prefixo: "sport" },
+        "vitoria": { nome: "Vitória", prefixo: "vitoria" },
+        "juventude": { nome: "Juventude", prefixo: "juventude" }
+    };
+
+    let carrinho = {
+        titular: 0,
+        reserva: 0,
+        especial: 0
+    };
+
+    const PRECO_UNITARIO = 199.90;
+    const ESTOQUE_MAX = 10;
+    let tamanhoSelecionado = null;
+    let clubeAtual = "Palmeiras";
+    let prefixoAtual = "palmeiras";
+
+    // AQUI: Corrigido para procurar as camisolas na sua pasta ./img/
+    function carregarImagemComSeguranca(baseCaminho, imgElemento) {
+        const extensoes = ['.png', '.jpg', '.jpeg'];
+        let tentativa = 0;
+
+        function tentarProxima() {
+            if (tentativa >= extensoes.length) return;
+            const caminhoAtual = baseCaminho + extensoes[tentativa];
+            tentativa++;
+
+            const tester = new Image();
+            tester.src = caminhoAtual;
+            tester.onload = () => { imgElemento.src = caminhoAtual; };
+            tester.onerror = () => { tentarProxima(); };
+        }
+        tentarProxima();
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const params = new URLSearchParams(window.location.search);
+        const chaveTime = params.get('time') || 'palmeiras';
+
+        if (baseDadosTimes[chaveTime]) {
+            const dados = baseDadosTimes[chaveTime];
+            clubeAtual = dados.nome;
+            prefixoAtual = dados.prefixo;
+            
+            document.getElementById('nome-produto').innerText = `Mantos Oficiais - ${dados.nome} 2026`;
+            document.getElementById('nav-titulo-time').innerHTML = `${dados.nome.toUpperCase()} <span class="text-gold">2026</span>`;
+            
+            const imgElement = document.getElementById('img-produto');
+            // AQUI: Caminho atualizado para ./img/ em vez de img.png/
+            carregarImagemComSeguranca(`./img/${prefixoAtual}1`, imgElement);
+        }
+    });
+
+    function trocarVisualizacao(numero) {
+        const imgElement = document.getElementById('img-produto');
+        // AQUI: Caminho atualizado para ./img/ em vez de img.png/
+        carregarImagemComSeguranca(`./img/${prefixoAtual}${numero}`, imgElement);
+
+        document.querySelectorAll('.manto-thumb').forEach((btn, index) => {
+            if (index === (numero - 1)) {
+                btn.classList.add('border-gold');
+                btn.classList.remove('border-white/20');
+            } else {
+                btn.classList.remove('border-gold');
+                btn.classList.add('border-white/20');
+            }
+        });
+    }
+
+    function ajustarQtd(modelo, direcao) {
+        let novaQtd = carrinho[modelo] + direcao;
+
+        if (novaQtd < 0) novaQtd = 0;
+        if (novaQtd > ESTOQUE_MAX) {
+            alert(`Atenção: O stock máximo para cada edição é de ${ESTOQUE_MAX} unidades!`);
+            return;
+        }
+
+                carrinho[modelo] = novaQtd;
+        document.getElementById(`qtd-${modelo}`).innerText = novaQtd;
+
+        if (modelo === 'titular') trocarVisualizacao(1);
+        if (modelo === 'reserva') trocarVisualizacao(2);
+        if (modelo === 'especial') trocarVisualizacao(3);
+
+        atualizarTotais();
+    }
+    function atualizarTotais() {
+        const totalPecas = carrinho.titular + carrinho.reserva + carrinho.especial;
+        const valorTotal = totalPecas * PRECO_UNITARIO;
+
+        document.getElementById('total-pecas').innerText = totalPecas;
+        document.getElementById('valor-total').innerText = valorTotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    }
+
+    function selecionarTamanho(tamanho, elemento) {
+        document.querySelectorAll('.tamanho-btn').forEach(btn => {
+            btn.classList.remove('border-gold', 'bg-gold', 'text-slate-950');
+            btn.classList.add('bg-brandCard', 'border-white/20');
+        });
+        elemento.classList.remove('bg-brandCard', 'border-white/20');
+        elemento.classList.add('border-gold', 'bg-gold', 'text-slate-950');
+        tamanhoSelecionado = tamanho;
+    }
+
+    function verificarFormaPagamento() {
+        const forma = document.getElementById('forma-pagamento').value;
+        const containerCartao = document.getElementById('container-cartao');
+
+        if (forma === 'Cartão de Crédito') {
+            containerCartao.classList.remove('hidden');
+            document.getElementById('cc-numero').required = true;
+            document.getElementById('cc-validade').required = true;
+            document.getElementById('cc-cvv').required = true;
+        } else {
+            containerCartao.classList.add('hidden');
+            document.getElementById('cc-numero').required = false;
+            document.getElementById('cc-validade').required = false;
+            document.getElementById('cc-cvv').required = false;
+        }
+    }
+
+    function concluirPedido(event) {
+        event.preventDefault();
+
+        const totalPecas = carrinho.titular + carrinho.reserva + carrinho.especial;
+
+        if (totalPecas === 0) {
+            alert('Por favor, selecione pelo menos 1 camisa para prosseguir!');
+            return;
+        }
+
+        if (!tamanhoSelecionado) {
+            alert('Por favor, selecione um tamanho geral (P, M, G, GG ou XGG)!');
+            return;
+        }
+
+        const nome = document.getElementById('cliente-nome').value;
+        const fone = document.getElementById('cliente-fone').value;
+        const pagamento = document.getElementById('forma-pagamento').value;
+        const valorTotalFormatado = (totalPecas * PRECO_UNITARIO).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+
+        let infoPagamentoDetalhe = pagamento;
+        if (pagamento === 'Cartão de Crédito') {
+            const parcelas = document.getElementById('cc-parcelas').value;
+            infoPagamentoDetalhe = `Cartão de Crédito (${parcelas})`;
+        }
+
+        let resumoMantos = [];
+        if (carrinho.titular > 0) resumoMantos.push(`${carrinho.titular}x Titular`);
+        if (carrinho.reserva > 0) resumoMantos.push(`${carrinho.reserva}x Reserva`);
+        if (carrinho.especial > 0) resumoMantos.push(`${carrinho.especial}x Especial`);
+
+        // MODAL FLUTUANTE PROFISSIONAL
+        let modalSucesso = document.getElementById('modal-sucesso-pedido');
+        if (!modalSucesso) {
+            modalSucesso = document.createElement('div');
+            modalSucesso.id = 'modal-sucesso-pedido';
+            modalSucesso.className = "fixed inset-0 bg-black/90 backdrop-blur-md z-50 flex items-center justify-center p-4";
+            document.body.appendChild(modalSucesso);
+        }
+
+        modalSucesso.innerHTML = `
+            <div class="bg-brandCard border border-gold/50 rounded-2xl max-w-md w-full p-6 text-white shadow-2xl relative">
+                <div class="text-center mb-4">
+                    <span class="text-4xl">🎉</span>
+                    <h3 class="text-xl font-black text-gold mt-2">Pedido Registado com Sucesso!</h3>
+                    <p class="text-xs text-slate-400 mt-1">Parabéns, ${nome}! A sua armadura está garantida.</p>
+                </div>
+                
+                <div class="bg-slate-900/80 border border-white/10 rounded-xl p-4 space-y-2 text-xs mb-6 font-mono">
+                    <div class="flex justify-between"><span class="text-slate-400">Clube:</span> <strong class="text-white">${clubeAtual}</strong></div>
+                    <div class="flex justify-between"><span class="text-slate-400">Mantos:</span> <strong class="text-gold">${resumoMantos.join(', ')}</strong></div>
+                    <div class="flex justify-between"><span class="text-slate-400">Tamanho:</span> <strong class="text-white">${tamanhoSelecionado}</strong></div>
+                    <div class="flex justify-between"><span class="text-slate-400">Valor Total:</span> <strong class="text-brandGreen">${valorTotalFormatado}</strong></div>
+                    <div class="flex justify-between"><span class="text-slate-400">Pagamento:</span> <strong class="text-white">${infoPagamentoDetalhe}</strong></div>
+                </div>
+
+                <p class="text-[11px] text-slate-300 text-center mb-6 leading-relaxed">
+                    Entraremos em contacto pelo WhatsApp (<strong class="text-gold">${fone}</strong>) para confirmar a entrega e os detalhes do envio!
+                </p>
+
+                <button onclick="fecharModalSucesso()" class="w-full bg-gold hover:bg-amber-400 text-slate-950 font-black text-sm py-3 rounded-xl transition-all shadow-lg shadow-gold/20">
+                    CONCLUÍDO / VOLTAR AO INÍCIO
+                </button>
+            </div>
+        `;
+    }
+
+    function fecharModalSucesso() {
+        window.location.href = 'index.html';
+    }
+</script>
+</body>
+</html>

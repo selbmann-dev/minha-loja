@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manto Sagrado | Camisetas Brasileirão 2026</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: '#FFD700',
+                        brandDark: '#0A0F1D',
+                        brandCard: '#161F33',
+                        brandGreen: '#00C853'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- 🔗 LINK PARA O SEU ARQUIVO CSS EXTERNO -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-brandDark text-white font-sans antialiased">
+
+    <!-- Navegação Responsiva -->
+    <nav class="bg-brandCard/90 backdrop-blur-md fixed w-full z-50 border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <span class="text-2xl sm:text-3xl">⚽</span>
+                <span class="font-extrabold text-xl sm:text-2xl tracking-wider text-gold">MANTO<span class="text-white">2026</span></span>
+            </div>
+            <a href="#times" class="bg-brandGreen hover:bg-emerald-500 text-slate-950 font-bold px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-sm sm:text-base transition-all duration-300 shadow-lg shadow-brandGreen/20 transform hover:scale-105">
+                Escolher Time
+            </a>
+        </div>
+    </nav>
+
+    <!-- ABRE-ALAS / HERO SECTION -->
+    <header class="relative pt-28 pb-12 sm:pt-36 sm:pb-20 overflow-hidden">
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 sm:w-96 sm:h-96 bg-gold/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center relative z-10">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-white/5 border border-gold/30 mb-6 sm:mb-8 backdrop-blur-sm animate-pulse">
+                <span class="w-2 h-2 rounded-full bg-gold"></span>
+                <span class="text-[11px] sm:text-sm font-semibold text-gold uppercase tracking-wider">Descontos Especiais de Lançamento</span>
+            </div>
+
+            <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black leading-tight tracking-tight mb-6">
+                Um torcedor sem uniforme <br class="hidden sm:inline"/>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-amber-400 to-gold">grita gol sem emoção.</span>
+            </h1>
+
+            <p class="text-base sm:text-xl text-slate-300 max-w-2xl mx-auto mb-8 sm:mb-10 leading-relaxed">
+                Não assista ao campeonato sem a sua armadura. Vista a paixão do seu time com o padrão de qualidade que você merece para o Brasileirão 2026.
+            </p>
+
+            <!-- CRONÔMETRO REGRESSIVO -->
+            <div class="bg-brandCard/80 border border-gold/40 rounded-2xl p-4 sm:p-6 mb-8 max-w-xl mx-auto shadow-2xl backdrop-blur-md">
+                <p class="text-xs sm:text-sm font-bold text-gold uppercase tracking-widest mb-3">🔥 A promoção encerra em:</p>
+                <div class="grid grid-cols-4 gap-2 sm:gap-4 text-center">
+                    <div class="bg-slate-900/90 rounded-xl p-2 sm:p-3 border border-white/5">
+                        <span id="days" class="block text-2xl sm:text-4xl font-black text-white">15</span>
+                        <span class="text-[10px] sm:text-xs text-slate-400 font-semibold uppercase">Dias</span>
+                    </div>
+                    <div class="bg-slate-900/90 rounded-xl p-2 sm:p-3 border border-white/5">
+                        <span id="hours" class="block text-2xl sm:text-4xl font-black text-white">00</span>
+                        <span class="text-[10px] sm:text-xs text-slate-400 font-semibold uppercase">Horas</span>
+                    </div>
+                    <div class="bg-slate-900/90 rounded-xl p-2 sm:p-3 border border-white/5">
+                        <span id="minutes" class="block text-2xl sm:text-4xl font-black text-white">00</span>
+                        <span class="text-[10px] sm:text-xs text-slate-400 font-semibold uppercase">Min</span>
+                    </div>
+                    <div class="bg-slate-900/90 rounded-xl p-2 sm:p-3 border border-white/5">
+                        <span id="seconds" class="block text-2xl sm:text-4xl font-black text-gold">00</span>
+                        <span class="text-[10px] sm:text-xs text-slate-400 font-semibold uppercase">Seg</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exaltação ao Futebol -->
+            <div class="p-5 sm:p-8 rounded-2xl bg-brandCard/60 border border-white/10 backdrop-blur-sm text-left max-w-3xl mx-auto">
+                <h2 class="text-lg sm:text-xl font-bold text-gold mb-2 flex items-center gap-2">
+                    <span>🏆</span> O Brasil é Gigante no Futebol
+                </h2>
+                <p class="text-slate-300 text-xs sm:text-base leading-relaxed">
+                    A alma do futebol nacional vive em cada bancada e em cada grito de gol. Fomos moldados pelas glórias das nossas <strong class="text-white">5 Copas do Mundo</strong>, mas o amor diário é alimentado pelas cores do nosso time do coração. Ser torcedor é vestir a história.
+                </p>
+            </div>
+        </div>
+    </header>
+
+    <!-- =========================================
+         GALERIA HISTÓRICA — AS 5 COPAS DO BRASIL
+    ========================================= -->
+
+    <section id="historia-brasil" class="py-14 sm:py-20 bg-brandCard/30 border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- CABEÇALHO -->
+            <div class="text-center mb-12">
+                <span class="text-gold text-xs sm:text-sm font-bold uppercase tracking-[0.25em]">
+                    Nossa história, nossa paixão
+                </span>
+                <h2 class="text-3xl sm:text-5xl font-black mt-3 mb-4">
+                    Galeria de Histórias:
+                    <span class="text-gold">As 5 Conquistas</span>
+                </h2>
+                <p class="text-slate-400 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
+                    Cinco conquistas que eternizaram o Brasil na história do futebol mundial. Reviva cada momento de glória da Seleção Brasileira.
+                </p>
+            </div>
+
+            <!-- GALERIA DOS CINCO TÍTULOS -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <!-- 1958 -->
+                <article class="bg-brandCard rounded-2xl overflow-hidden border border-white/10 shadow-xl hover:border-gold/50 transition-all duration-300">
+                    <div class="h-2 bg-gradient-to-r from-yellow-600 to-gold"></div>
+                    <div class="p-6">
+                        <span class="text-gold text-xs font-extrabold tracking-widest">PRIMEIRA CONQUISTA</span>
+                        <h3 class="text-2xl font-black mt-3">1958</h3>
+                        <p class="text-slate-400 text-sm font-semibold mt-1">Suécia</p>
+                        <p class="text-slate-300 text-sm leading-relaxed mt-4 mb-6">O nascimento de uma potência mundial. O Brasil conquistou seu primeiro título mundial e iniciou uma trajetória de glórias.</p>
+                        <a href="https://youtu.be/HJ8mLY8_Lro?is=AvAfj6fkhq3sq52c" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 w-full bg-brandGreen hover:bg-emerald-500 text-slate-950 font-extrabold py-3 rounded-xl transition-all duration-300">
+                            ▶ Assistir à conquista
+                        </a>
+                    </div>
+                </article>
+
+                <!-- 1962 -->
+                <article class="bg-brandCard rounded-2xl overflow-hidden border border-white/10 shadow-xl hover:border-gold/50 transition-all duration-300">
+                    <div class="h-2 bg-gradient-to-r from-yellow-600 to-gold"></div>
+                    <div class="p-6">
+                        <span class="text-gold text-xs font-extrabold tracking-widest">SEGUNDA CONQUISTA</span>
+                        <h3 class="text-2xl font-black mt-3">1962</h3>
+                        <p class="text-slate-400 text-sm font-semibold mt-1">Chile</p>
+                        <p class="text-slate-300 text-sm leading-relaxed mt-4 mb-6">O Brasil confirmou sua grandeza e conquistou o bicampeonato mundial, defendendo seu título com uma geração histórica.</p>
+                        <a href="https://youtu.be/x9XeAzn1-kM?is=LEnFeuZT5yqQ5B0k" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 w-full bg-brandGreen hover:bg-emerald-500 text-slate-950 font-extrabold py-3 rounded-xl transition-all duration-300">
+                            ▶ Assistir à conquista
+                        </a>
+                    </div>
+                </article>
+
+                <!-- 1970 -->
+                <article class="bg-brandCard rounded-2xl overflow-hidden border border-white/10 shadow-xl hover:border-gold/50 transition-all duration-300">
+                    <div class="h-2 bg-gradient-to-r from-yellow-600 to-gold"></div>
+                    <div class="p-6">
+                        <span class="text-gold text-xs font-extrabold tracking-widest">TERCEIRA CONQUISTA</span>
+                        <h3 class="text-2xl font-black mt-3">1970</h3>
+                        <p class="text-slate-400 text-sm font-semibold mt-1">México</p>
+                        <p class="text-slate-300 text-sm leading-relaxed mt-4 mb-6">Uma seleção inesquecível encantou o mundo com seu futebol e conquistou o tricampeonato mundial.</p>
+                        <a href="https://youtu.be/_OgaEIjZFUc?is=24mqn0b_GAQeKRT-" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 w-full bg-brandGreen hover:bg-emerald-500 text-slate-950 font-extrabold py-3 rounded-xl transition-all duration-300">
+                            ▶ Assistir à conquista
+                        </a>
+                    </div>
+                </article>
+
+                <!-- 1994 -->
+                <article class="bg-brandCard rounded-2xl overflow-hidden border border-white/10 shadow-xl hover:border-gold/50 transition-all duration-300">
+                    <div class="h-2 bg-gradient-to-r from-yellow-600 to-gold"></div>
+                    <div class="p-6">
+                        <span class="text-gold text-xs font-extrabold tracking-widest">QUARTA CONQUISTA</span>
+                        <h3 class="text-2xl font-black mt-3">1994</h3>
+                        <p class="text-slate-400 text-sm font-semibold mt-1">Estados Unidos</p>
+                        <p class="text-slate-300 text-sm leading-relaxed mt-4 mb-6">Após 24 anos de espera, o Brasil voltou ao topo do futebol mundial e conquistou seu quarto título.</p>
+                        <a href="https://youtu.be/hmbmN_F23YQ?is=uhbqlKB1hI84gLGh" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 w-full bg-brandGreen hover:bg-emerald-500 text-slate-950 font-extrabold py-3 rounded-xl transition-all duration-300">
+                            ▶ Assistir à conquista
+                        </a>
+                    </div>
+                </article>
+
+                <!-- 2002 -->
+                <article class="bg-brandCard rounded-2xl overflow-hidden border border-white/10 shadow-xl hover:border-gold/50 transition-all duration-300 sm:col-span-2 lg:col-span-1">
+                    <div class="h-2 bg-gradient-to-r from-yellow-600 to-gold"></div>
+                    <div class="p-6">
+                        <span class="text-gold text-xs font-extrabold tracking-widest">QUINTA CONQUISTA</span>
+                        <h3 class="text-2xl font-black mt-3">2002</h3>
+                        <p class="text-slate-400 text-sm font-semibold mt-1">Coreia do Sul e Japão</p>
+                        <p class="text-slate-300 text-sm leading-relaxed mt-4 mb-6">Com uma campanha memorável, o Brasil conquistou o pentacampeonato e escreveu mais um capítulo de sua história.</p>
+                        <a href="https://youtu.be/UVsZzJ9dFNA?is=bCiPThYluHTz74FH" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 w-full bg-brandGreen hover:bg-emerald-500 text-slate-950 font-extrabold py-3 rounded-xl transition-all duration-300">
+                            ▶ Assistir à conquista
+                        </a>
+                    </div>
+                </article>
+
+            </div>
+
+            <!-- ENCERRAMENTO DA GALERIA -->
+            <div class="text-center mt-12">
+                <p class="text-gold font-bold text-sm sm:text-base">Cinco estrelas. Uma história. Uma paixão.</p>
+                <p class="text-slate-500 text-xs mt-2">O futebol brasileiro faz parte da nossa identidade.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO DOS 20 TIMES -->
+    <section id="times" class="py-16 sm:py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl sm:text-5xl font-black mb-3">Camisetas Brasileirão <span class="text-gold">2026</span></h2>
+                <p class="text-slate-400 text-sm sm:text-base">Selecione o seu clube para ver as opções de mantos e realizar a compra.</p>
+            </div>
+
+            <!-- Grid de Times -->
+            <div id="container-times" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6 min-h-[320px]">
+            </div>
+
+            <!-- CONTROLES DE NAVEGAÇÃO POR SETAS -->
+            <div class="flex items-center justify-center gap-4 mt-8">
+                <button id="btn-prev" onclick="mudarPagina(-1)" class="bg-brandCard hover:bg-slate-800 border border-white/20 text-white font-bold px-4 py-2 rounded-xl transition-all disabled:opacity-30 disabled:cursor-not-allowed flex items-center gap-2">
+                    <span>⬅️</span> Anterior
+                </button>
+                
+                <span id="indicador-pagina" class="text-gold font-extrabold text-sm sm:text-base">
+                    Página 1 de 2
+                </span>
+
+                <button id="btn-next" onclick="mudarPagina(1)" class="bg-brandCard hover:bg-slate-800 border border-white/20 text-white font-bold px-4 py-2 rounded-xl transition-all disabled:opacity-30 disabled:cursor-not-allowed flex items-center gap-2">
+                    Próximo <span>➡️</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer class="bg-brandCard border-t border-white/10 py-8 text-center text-slate-400 text-sm">
+        <p>&copy; 2026 Manto 2026. Todos os direitos reservados. Projeto Full Stack.</p>
+    </footer>
+
+    <!-- ⚡ LINK PARA O SEU ARQUIVO JAVASCRIPT EXTERNO -->
+    <script src="script.js"></script>
+</body>
+</html>
