@@ -64,21 +64,44 @@ const timesBrasileirao = [
 let paginaAtual = 1;
 const totalPaginas = 2;
 
-// Função para renderizar os cards dinamicamente na tela
+// 3. Função inteligente: testa dinamicamente qualquer extensão de imagem até carregar
+function carregarImagemDinamica(imgElement, caminhoBase, nomeSemExtensao) {
+    const extensoes = ['.png', '.jpeg', '.jpg', '.webp', '.PNG', '.JPEG', '.JPG', '.WEBP'];
+    let tentativa = 0;
+
+    function testarProxima() {
+        if (tentativa < extensoes.length) {
+            const ext = extensoes[tentativa];
+            tentativa++;
+            imgElement.src = `${caminhoBase}/${nomeSemExtensao}${ext}`;
+        } else {
+            imgElement.onerror = null; // Para as tentativas caso o arquivo não exista
+        }
+    }
+
+    imgElement.onerror = testarProxima;
+    testarProxima(); // Inicia o teste a partir da primeira extensão
+}
+
+// 4. Função para renderizar os cards dinamicamente na tela
 function renderizarTimes() {
     const container = document.getElementById('container-times');
-    if (!container) return; // Segurança caso o script corra noutra página
+    if (!container) return; // Segurança caso o script execute em outra página
     container.innerHTML = ''; // Limpa o container antes de renderizar
 
     // Filtra apenas os times da página atual
     const timesDaPagina = timesBrasileirao.filter(time => time.pagina === paginaAtual);
 
     timesDaPagina.forEach(time => {
-        // CORREÇÃO: Utilizando ./img/ para garantir o caminho relativo correto no navegador
+        // Remove a extensão original para pegar apenas o nome limpo (ex: "flamengo")
+        const nomeLimpo = time.img.replace(/\.[^/.]+$/, "");
+
         const cardHTML = `
             <a href="${time.arquivo}" class="time-card bg-brandCard border border-white/10 hover:border-gold rounded-2xl p-4 flex flex-col items-center text-center transition-all duration-300 hover:-translate-y-2 group">
                 <div class="w-20 h-20 sm:w-24 sm:h-24 flex items-center justify-center mb-3 p-2 bg-slate-900/50 rounded-xl">
-                    <img src="./img/${time.img}" alt="${time.nome}" class="max-h-full max-w-full object-contain">
+                    <img id="img-${nomeLimpo}" 
+                         alt="${time.nome}" 
+                         class="max-h-full max-w-full object-contain">
                 </div>
                 <h3 class="font-extrabold text-sm sm:text-base text-white group-hover:text-gold">${time.nome}</h3>
                 <span class="text-xs text-brandGreen font-bold mt-1">Ver Mantos →</span>
@@ -87,20 +110,27 @@ function renderizarTimes() {
         container.innerHTML += cardHTML;
     });
 
-    // Atualiza o texto do indicador
-    const indicador = document.getElementById('indicador-pagina');
-    if (indicador) {
-        indicador.innerText = `Página ${paginaAtual} de ${totalPaginas}`;
-    }
+    // Chama o carregador dinâmico de extensão para cada imagem na tela
+    timesDaPagina.forEach(time => {
+        const nomeLimpo = time.img.replace(/\.[^/.]+$/, "");
+        const imgElement = document.getElementById(`img-${nomeLimpo}`);
+        if (imgElement) {
+            carregarImagemDinamica(imgElement, 'img', nomeLimpo);
+        }
+    });
 
-    // Habilita/Desabilita os botões de seta
+    // Atualiza indicador de página
+    const indicador = document.getElementById('indicador-pagina');
+    if (indicador) indicador.innerText = `Página ${paginaAtual} de ${totalPaginas}`;
+
+    // Habilita/Desabilita os botões de navegação
     const btnPrev = document.getElementById('btn-prev');
     const btnNext = document.getElementById('btn-next');
     if (btnPrev) btnPrev.disabled = (paginaAtual === 1);
     if (btnNext) btnNext.disabled = (paginaAtual === totalPaginas);
 }
 
-// Função chamada ao clicar nas setas
+// 5. Função para mudar de página nas setas
 function mudarPagina(direcao) {
     paginaAtual += direcao;
     if (paginaAtual < 1) paginaAtual = 1;
@@ -109,8 +139,8 @@ function mudarPagina(direcao) {
     renderizarTimes();
 }
 
-// Inicializações ao carregar o DOM
+// 6. Inicializações ao carregar o DOM
 document.addEventListener('DOMContentLoaded', () => {
     startCountdown();
-    renderizarTimes(); // Desenha os primeiros 10 times na tela
+    renderizarTimes();
 });
